@@ -1,0 +1,11 @@
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'shorten'
+})
+export class ReduceTextPipe implements PipeTransform {
+
+  transform(value: string, option: number): string {
+    return value.substring(0, option) + '...';
+  }
+}

@@ -1,0 +1,259 @@
+<form
+  [formGroup]="orderForm"
+  (ngSubmit)="onSubmit(orderForm)"
+  class="form-horizontal"
+>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Create Order</h3>
+    </div>
+    <div class="panel-body">
+      <div
+        [ngClass]="{
+          'first-step': counter === 0 || counter === 4
+        }"
+        class="stepper"
+      >
+        <div class="form-group" [ngClass]="{ 'has-error': formErrors.goods }">
+          <label class="col-md-2 control-label" for="goods">Goods</label>
+          <div class="col-md-8">
+            <select
+              id="goods"
+              formControlName="goods"
+              class="form-control"
+              (change)="onChange()"
+              (blur)="logValidationErrors()"
+            >
+              <option value="-1">Select Goods</option>
+              <option
+                *ngFor="let item of shopInfo; index as i"
+                value="{{ item.name }}"
+                >{{ item.name }}</option
+              >
+            </select>
+            <span class="help-block" *ngIf="formErrors.goods">{{
+              formErrors.goods
+            }}</span>
+          </div>
+        </div>
+        <div
+          class="form-group"
+          [ngClass]="{ 'has-error': formErrors.description }"
+        >
+          <label for="description" class="col-md-2 control-label"
+            >Description</label
+          >
+          <div class="col-md-8">
+            <textarea
+              formControlName="description"
+              id="description"
+              (blur)="logValidationErrors()"
+              cols="85"
+              rows="5"
+              >{{ description }}</textarea
+            >
+            <span class="help-block" *ngIf="formErrors.description">{{
+              formErrors.description
+            }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div
+        [ngClass]="{
+          'second-step': counter === 1 || counter === 4
+        }"
+        class="stepper"
+      >
+        <div class="form-group" [ngClass]="{ 'has-error': formErrors.country }">
+          <label class="col-md-2 control-label" for="country">Country</label>
+          <div class="col-md-8">
+            <input
+              class="form-control"
+              type="text"
+              id="country"
+              formControlName="country"
+              (blur)="logValidationErrors()"
+            />
+            <span class="help-block" *ngIf="formErrors.country">{{
+              formErrors.country
+            }}</span>
+          </div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': formErrors.city }">
+          <label class="col-md-2 control-label" for="city">City</label>
+          <div class="col-md-8">
+            <input
+              class="form-control"
+              type="text"
+              id="city"
+              formControlName="city"
+              (blur)="logValidationErrors()"
+            />
+            <span class="help-block" *ngIf="formErrors.city">{{
+              formErrors.city
+            }}</span>
+          </div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': formErrors.address }">
+          <label class="col-md-2 control-label" for="address">Address</label>
+          <div class="col-md-8">
+            <input
+              class="form-control"
+              type="text"
+              id="address"
+              formControlName="address"
+              (blur)="logValidationErrors()"
+            />
+            <span class="help-block" *ngIf="formErrors.address">{{
+              formErrors.address
+            }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div
+        [ngClass]="{
+          'third-step': counter === 2 || counter === 4
+        }"
+        class="stepper"
+      >
+        <div class="form-group">
+          <label class="col-md-2 control-label">Payment method</label>
+          <div class="col-md-8">
+            <label for="" class="radio-inline">
+              <input
+                type="radio"
+                id="card"
+                value="card"
+                formControlName="paymentMethod"
+              />
+              Card
+            </label>
+            <label for="" class="radio-inline">
+              <input
+                type="radio"
+                id="payPal"
+                value="payPal"
+                formControlName="paymentMethod"
+              />
+              PayPal
+            </label>
+            <label for="" class="radio-inline">
+              <input
+                type="radio"
+                id="cash"
+                value="cash"
+                formControlName="paymentMethod"
+              />
+              Cash
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div
+        [ngClass]="{
+          'forth-step': counter === 3
+        }"
+        class="stepper"
+      >
+        <div class="form-group">
+          <label class="col-md-2 control-label">Date of delivery</label>
+          <div class="col-md-8">
+            <label for="" class="radio-inline">
+              <input
+                type="radio"
+                id="today"
+                value="today"
+                formControlName="date"
+              />
+              Today
+            </label>
+            <label for="" class="radio-inline">
+              <input
+                type="radio"
+                id="tomorrow"
+                value="tomorrow"
+                formControlName="date"
+              />
+              Tomorrow
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="date" class="control-label col-md-2">
+            Or Select Date
+          </label>
+          <div class="col-md-6">
+            <input
+              class="form-control"
+              type="date"
+              id="date"
+              formControlName="date"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div
+        [ngClass]="{
+          'fifth-step': counter === 4
+        }"
+        class="date-output stepper"
+      >
+        <div class="form-group">
+          <label class="control-label col-md-2" for="dateOutput"
+            >Delivery date</label
+          >
+          <div class="col-md-8">
+            <p class="form-control">{{ deliveryDate | date }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <div class="btn-toolbar">
+        <button
+          [ngClass]="{
+            'btn-hide': counter === 0
+          }"
+          type="button"
+          class="btn btn-danger"
+          (click)="onPrevClick()"
+        >
+          << Prev
+        </button>
+        <button
+          [ngClass]="{
+            'btn-hide': counter === 4,
+            disabled:
+              (counter === 0 &&
+                (orderForm.get('goods').invalid ||
+                  orderForm.get('description').invalid)) ||
+              (counter === 1 &&
+                (orderForm.get('country').invalid ||
+                  orderForm.get('city').invalid ||
+                  orderForm.get('address').invalid)) ||
+              (counter === 2 && orderForm.get('paymentMethod').invalid) ||
+              (counter === 3 && orderForm.get('date').invalid)
+          }"
+          type="button"
+          class="btn btn-primary"
+          (click)="onNextClick()"
+        >
+          Next >>
+        </button>
+        <button
+          [ngClass]="{
+            'btn-show': counter === 4
+          }"
+          type="submit"
+          class="stepper btn btn-success"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

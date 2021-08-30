@@ -1,0 +1,39 @@
+.stepper {
+  display: none;
+}
+
+.first-step {
+  display: block;
+}
+
+.second-step {
+  display: block;
+}
+
+.third-step {
+  display: block;
+}
+
+.forth-step {
+  display: block;
+}
+
+.stepper.btn-sumbit {
+  display: block;
+}
+
+.btn.btn-stepper {
+  display: block;
+}
+
+.btn-hide {
+  display: none;
+}
+
+.btn-show {
+  display: block;
+}
+
+.fifth-step {
+  display: block;
+}

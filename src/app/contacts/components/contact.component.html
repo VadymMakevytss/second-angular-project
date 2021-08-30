@@ -1,0 +1,132 @@
+<!--key: AIzaSyCtTDNNBXyyAOhrv5Z1VRswL7D7MYMJde4 -->
+<!-- ipapi key : b776e23952610e449ee66d9529903af7 -->
+<!-- http://api.ipapi.com/212.165.108.172?access_key=b776e23952610e449ee66d9529903af7 -->
+
+<form #contactForm="ngForm" (ngSubmit)="saveCustomer(customer)">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Contact Form</h3>
+    </div>
+    <div class="panel-body">
+      <div
+        class="form-group"
+        [class.has-error]="nameControl.invalid && nameControl.touched"
+        [class.has-success]="nameControl.valid"
+      >
+        <label for="name" class="control-label">Name</label>
+        <input
+          required
+          type="text"
+          id="name"
+          name="name"
+          class="form-control"
+          [(ngModel)]="customer.name"
+          #nameControl="ngModel"
+        />
+        <span
+          class="help-block"
+          *ngIf="nameControl.invalid && nameControl.touched"
+          >Name is required</span
+        >
+      </div>
+
+      <div
+        class="form-group"
+        [class.has-error]="sureNameControl.invalid && sureNameControl.touched"
+        [class.has-success]="sureNameControl.valid"
+      >
+        <label for="sureName" class="control-label">Sure name</label>
+        <input
+          required
+          type="text"
+          id="sureName"
+          name="sureName"
+          class="form-control"
+          [(ngModel)]="customer.sureName"
+          #sureNameControl="ngModel"
+        />
+        <span
+          class="help-block"
+          *ngIf="sureNameControl.invalid && sureNameControl.touched"
+          >Surename is required</span
+        >
+      </div>
+
+      <div
+        class="form-group"
+        [class.has-error]="emailControl.invalid && emailControl.touched"
+        [class.has-success]="emailControl.valid"
+      >
+        <label for="email" class="control-label">Email</label>
+        <input
+          required
+          [email]="customer.email !== ''"
+          type="email"
+          id="email"
+          name="email"
+          class="form-control"
+          [(ngModel)]="customer.email"
+          #emailControl="ngModel"
+        />
+        <span
+          class="help-block"
+          *ngIf="emailControl.errors?.required && emailControl.touched"
+          >Email is required</span
+        >
+        <span
+          class="help-block"
+          *ngIf="emailControl.errors?.email && emailControl.touched"
+          >Email is invalid</span
+        >
+      </div>
+
+      <div
+        class="form-group"
+        [class.has-error]="
+          descriptionControl.invalid && descriptionControl.touched
+        "
+        [class.has-success]="descriptionControl.valid"
+      >
+        <label for="description" class="control-label">Description</label>
+        <textarea
+          required
+          class="form-control"
+          name="description"
+          id="description"
+          cols="30"
+          rows="10"
+          [(ngModel)]="customer.description"
+          #descriptionControl="ngModel"
+        ></textarea>
+        <span
+          class="help-block"
+          *ngIf="descriptionControl.invalid && descriptionControl.touched"
+          >Description is required</span
+        >
+      </div>
+    </div>
+
+    <div class="panel-footer">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="contactForm.invalid"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</form>
+
+<br /><br />
+<agm-map
+  [latitude]="latitude"
+  [longitude]="longitude"
+  (mapClick)="onChoseLocation($event)"
+>
+  <agm-marker
+    *ngIf="locationChosen"
+    [latitude]="latitude"
+    [longitude]="longitude"
+  ></agm-marker>
+</agm-map>

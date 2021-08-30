@@ -1,0 +1,332 @@
+<form
+  [formGroup]="newItemForm"
+  (ngSubmit)="onSubmit(newItemForm)"
+  class="form-horizontal"
+>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Add new product</h3>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <label for="imgUrl" class="control-label col-md-2">Input image</label>
+        <div class="col-md-5">
+          <div class="form-control">
+            <input
+              type="file"
+              class="form-control-file"
+              id="imgUrl"
+              formControlName="imgUrl"
+              (change)="onImageSelect($event)"
+              #fileInput
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-10">
+          <app-preview
+            [selectedFile]="selectedFile"
+            (resetSelectedFile)="handleReset($event)"
+          ></app-preview>
+        </div>
+      </div>
+
+      <div class="form-group" [ngClass]="{ 'has-error': formErrors.price }">
+        <label for="price" class="control-label col-md-2">Price</label>
+        <div class="col-md-8">
+          <input
+            id="price"
+            type="text"
+            class="form-control"
+            formControlName="price"
+            (blur)="logValidationErrors()"
+          />
+          <span class="help-block" *ngIf="formErrors.price">{{
+            formErrors.price
+          }}</span>
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{ 'has-error': formErrors.discount }">
+        <label for="discount" class="control-label col-md-2">Discount</label>
+        <div class="col-md-8">
+          <input
+            id="discount"
+            type="text"
+            class="form-control"
+            formControlName="discount"
+            (blur)="logValidationErrors()"
+          />
+          <span class="help-block" *ngIf="formErrors.discount">{{
+            formErrors.discount
+          }}</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label">Main</label>
+        <div class="col-md-8">
+          <label for="" class="radio-inline">
+            <input
+              type="radio"
+              id="false"
+              value="false"
+              formControlName="selectMain"
+            />
+            False
+          </label>
+          <label for="" class="radio-inline">
+            <input
+              type="radio"
+              id="true"
+              value="true"
+              formControlName="selectMain"
+            />
+            True
+          </label>
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{ 'has-error': formErrors.shop }">
+        <label class="col-md-2 control-label" for="shop">Shop</label>
+        <div class="col-md-8">
+          <select
+            id="shop"
+            formControlName="shop"
+            class="form-control"
+            (blur)="logValidationErrors()"
+          >
+            <option value="-1">Select Shop</option>
+            <option *ngFor="let shop of shops"> {{ shop }}</option>
+          </select>
+          <span class="help-block" *ngIf="formErrors.shop">{{
+            formErrors.shop
+          }}</span>
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{ 'has-error': formErrors.name }">
+        <label class="col-md-2 control-label" for="name">Name</label>
+        <div class="col-md-8">
+          <input
+            id="name"
+            formControlName="name"
+            class="form-control"
+            (blur)="logValidationErrors()"
+          />
+          <span class="help-block" *ngIf="formErrors.name">{{
+            formErrors.name
+          }}</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="description" class="col-md-2 control-label"
+          >Description</label
+        >
+        <div class="col-md-8">
+          <textarea
+            formControlName="description"
+            id="description"
+            cols="85"
+            rows="5"
+          ></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label">Select Shipping</label>
+        <div class="col-md-8">
+          <label for="" class="radio-inline">
+            <input
+              type="radio"
+              id="prePay"
+              value="Prepay"
+              formControlName="shipping"
+            />
+            Prepay
+          </label>
+          <label for="" class="radio-inline">
+            <input
+              type="radio"
+              id="free"
+              value="Free"
+              formControlName="shipping"
+            />
+            Free
+          </label>
+        </div>
+      </div>
+      <div
+        class="form-group"
+        [ngClass]="{ 'has-error': formErrors.discountUntil }"
+      >
+        <label for="date" class="control-label col-md-2">
+          Select Discount Expiration Date
+        </label>
+        <div class="col-md-8">
+          <input
+            class="form-control"
+            type="date"
+            id="date"
+            formControlName="discountUntil"
+            (blur)="logValidationErrors()"
+          />
+          <span class="help-block" *ngIf="formErrors.discountUntil">{{
+            formErrors.discountUntil
+          }}</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label">New</label>
+        <div class="col-md-8">
+          <label for="" class="radio-inline">
+            <input
+              type="radio"
+              id="false"
+              value="false"
+              formControlName="selectNew"
+            />
+            False
+          </label>
+          <label for="" class="radio-inline">
+            <input
+              type="radio"
+              id="true"
+              value="true"
+              formControlName="selectNew"
+            />
+            True
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="color" class="form-label col-md-2"
+          >Select available Colors</label
+        >
+
+        <div class="col-md-8">
+          <div
+            class="checkbox-inline"
+            *ngFor="let color of colors; index as i"
+            (change)="onChangeColor($event, color)"
+          >
+            <label class="form-check-label" for="{{ color }}">
+              <input
+                type="checkbox"
+                id="{{ color }}"
+                value="{{ color }}"
+                formControlName="color"
+              />{{ color }}</label
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="size" class="form-label col-md-2"
+          >Select available Sizes</label
+        >
+
+        <div class="col-md-8">
+          <div
+            class="checkbox-inline"
+            *ngFor="let size of sizesValues"
+            (change)="onChangeSize($event, size)"
+          >
+            <label class="form-check-label" for="size">
+              <input
+                type="checkbox"
+                id="size"
+                value="size"
+                formControlName="size"
+              />{{ size }}</label
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="well">
+        <div class="form-group">
+          <div class="col-md-offset-2 col-md-4">
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="addReview()"
+              [disabled]="newItemForm.get('review').invalid"
+            >
+              Add Review
+            </button>
+          </div>
+        </div>
+        <div
+          formArrayName="review"
+          *ngFor="let rev of newItemForm.get('review')['controls']; index as i"
+        >
+          <div [formGroupName]="i">
+            <div
+              class="form-group"
+              [ngClass]="{ 'has-error': formErrors.author }"
+            >
+              <label [attr.for]="'author' + i" class="control-label col-md-2"
+                >Author</label
+              >
+              <div class="col-md-8">
+                <input
+                  [id]="'author' + i"
+                  type="text"
+                  class="form-control"
+                  formControlName="author"
+                  (blur)="logValidationErrors()"
+                />
+                <span class="help-block" *ngIf="formErrors.author">{{
+                  formErrors.author
+                }}</span>
+              </div>
+            </div>
+            <div
+              class="form-group"
+              [ngClass]="{ 'has-error': formErrors.rating }"
+            >
+              <label [attr.for]="'rating' + i" class="control-label col-md-2"
+                >Raiting</label
+              >
+              <div class="col-md-8">
+                <input
+                  [id]="'rating' + i"
+                  type="text"
+                  class="form-control"
+                  formControlName="rating"
+                  (blur)="logValidationErrors()"
+                />
+                <span class="help-block" *ngIf="formErrors.author">{{
+                  formErrors.author
+                }}</span>
+              </div>
+            </div>
+            <div
+              class="form-group"
+              [ngClass]="{ 'has-error': formErrors.descText }"
+            >
+              <label [attr.for]="'descText' + i" class="col-md-2 control-label"
+                >Description text</label
+              >
+              <div class="col-md-8">
+                <textarea
+                  formControlName="descText"
+                  [id]="'text' + i"
+                  cols="60"
+                  rows="5"
+                  (blur)="logValidationErrors()"
+                ></textarea>
+                <span class="help-block" *ngIf="formErrors.descText">{{
+                  formErrors.descText
+                }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <button type="submit" class="btn btn-success">Add Product</button>
+    </div>
+  </div>
+</form>

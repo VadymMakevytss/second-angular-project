@@ -1,0 +1,7 @@
+<div class="container" [ngClass]="{ view: selectedFile }">
+  <button class="btn btn-danger" (click)="onClose()">Delete Image</button>
+  <label class="control-label col-md-2" for="view">Preview</label>
+  <div class="col-md-8">
+    <img [src]="selectedFile" id="view" alt="img" />
+  </div>
+</div>

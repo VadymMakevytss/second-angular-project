@@ -1,0 +1,126 @@
+.row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.col-6 {
+  padding: 0 5% 0 5%;
+  width: 50%;
+  height: 100vh;
+}
+
+.col-6 a {
+  cursor: pointer;
+}
+
+.img-container {
+  width: 100%;
+  height: auto;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: auto;
+}
+
+.resize-button-container {
+  width: 100%;
+  margin-top: -40px;
+  padding: 5px 0 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-resize {
+  border-radius: 5px;
+  border: none;
+  background: #ccc;
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+.color-info {
+  display: flex;
+  padding: 20px 0 20px 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.color-separator.unvisible {
+  display: none;
+}
+
+.colore-select {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.colore-select div {
+  margin: 1px;
+}
+
+.img-container {
+  max-width: 50px;
+  height: auto;
+}
+
+.img-container.selected {
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.75);
+}
+
+.star-background {
+  color: orange;
+}
+
+.review-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.selector {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+label {
+  padding: 3px 0 0 0;
+}
+
+select {
+  width: 100%;
+}
+
+.btn-block {
+  margin-top: 10px;
+}
+
+.btn-block.cart-add button {
+  background-color: paleturquoise;
+  color: #fff;
+}
+
+.btn-block button {
+  width: 100%;
+  border: none;
+  padding: 3px;
+}
+
+.btn-block.wish-add button {
+  border: 1px solid #000;
+}
+
+.cart-plus {
+  color: white;
+  padding: 0 5px 0 0;
+}
+
+button:hover {
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+}

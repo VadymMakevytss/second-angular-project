@@ -1,0 +1,279 @@
+body {
+  background: #ccc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+p {
+  text-align: center;
+}
+
+.header h3 {
+  width: 45px;
+  border-radius: 50%;
+  background: #ffbe17;
+  color: #fff;
+  font-size: 1.3rem;
+  position: absolute;
+  text-align: center;
+  line-height: 1;
+  padding: 11px 0;
+}
+
+.card-main .header h3 {
+  background: red;
+}
+
+.card-orange .header h3 {
+  background: orange;
+}
+
+.card-violet .header h3 {
+  background: violet;
+}
+
+.card-green .header h3 {
+  background: green;
+}
+
+.card-main .price-container p:first-child {
+  color: red;
+  font-size: 1.8rem;
+}
+
+.card-orange .price-container p:first-child {
+  color: orange;
+  font-size: 1.7rem;
+}
+
+.card-violet .price-container p:first-child {
+  color: violet;
+  font-size: 1.7rem;
+}
+
+.card-green .price-container p:first-child {
+  color: green;
+  font-size: 1.7rem;
+}
+
+.card-container:hover {
+  box-shadow: 0 0 0 1px rgba(9, 0, 0, 0.4);
+}
+
+.card-container:hover .description-container-1,
+.card-container:hover .description-container-2 {
+  text-decoration: underline;
+}
+
+p small {
+  display: inline-block;
+  font-size: 1.2rem;
+  margin-left: 16px;
+  line-height: 1.1;
+  color: #666;
+  position: relative;
+}
+
+p small::before {
+  position: absolute;
+  content: "";
+  left: -2px;
+  right: -2px;
+  top: 50%;
+  border-top: 1px #666 solid;
+  transform: rotate(10deg);
+}
+
+.card-main .description-container-1 p {
+  display: none;
+}
+
+.separator-container-2 {
+  display: none;
+  border-bottom: 1px dotted #666;
+}
+
+.description-container-2 {
+  display: none;
+  margin: 20px 0 20px 0;
+  margin-right: 50%;
+}
+
+.card-main .separator-container-2 {
+  display: block;
+}
+
+.card-main .description-container-2 {
+  display: block;
+}
+
+.card-container {
+  display: block;
+  max-width: calc(25% - 5px);
+  min-height: 278.95px;
+  border: 1px solid #666;
+  text-align: center;
+  float: left;
+  padding: 10px;
+  margin: 0 5px 5px 0;
+}
+.card-container.card-main {
+  max-width: calc(50% - 5px);
+  height: auto;
+}
+
+.card-container img {
+  margin-top: -20%;
+  margin-right: -10px;
+}
+
+.description-container p::after {
+  background: red;
+  content: "";
+}
+
+.card-main img {
+  max-width: 100%;
+  min-height: 100px;
+  display: block;
+  margin-top: -29px;
+}
+
+.image-container {
+  margin-right: 10px;
+}
+
+img {
+  max-width: 60%;
+  min-height: 100px;
+}
+
+.description-image-container {
+  margin-top: 80px;
+}
+
+.description-container {
+  max-width: 100%;
+  height: auto;
+  padding: 20px;
+}
+
+.price-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.separator-container {
+  border-bottom: 1px dotted #666;
+}
+
+.description-image .description-image-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 30px;
+}
+
+.description-image .description-container-1 {
+  font-size: 1.1rem;
+  width: 100%;
+}
+
+.description-container-1 p {
+  display: block;
+  text-align: left;
+}
+
+.card-footer {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.vertical-separator {
+  width: 1px;
+  background: #e6e6e6;
+  height: 20px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1200px) {
+  .card-container {
+    max-width: calc(50% - 5px);
+    height: 290px;
+  }
+
+  .card-main img {
+    width: 90%;
+  }
+
+  .card-container.card-main {
+    max-width: 100%;
+  }
+
+  .description-image .description-image-container {
+    min-height: 100px;
+    margin-bottom: 10px;
+  }
+
+  .description-image-container {
+    margin-top: 80px;
+  }
+
+  .image-container {
+    margin-right: -50px;
+  }
+
+  img {
+    min-width: 50%;
+    min-height: 150px;
+  }
+
+  .price-container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .card-footer {
+    margin-top: 10px;
+  }
+
+  @media screen and (max-width: 600px) {
+    .card-container {
+      max-width: 100%;
+    }
+
+    .description-image .description-image-container {
+      margin-bottom: 20px;
+    }
+
+    .description-image-container {
+      margin-top: 100px;
+    }
+
+    .card-container.card-main {
+      max-width: 100%;
+      height: 100%;
+    }
+
+    .card-container {
+      height: 340px;
+    }
+
+    .card-footer {
+      margin-top: 20px;
+    }
+
+    .image-container {
+      margin-right: -20px;
+      margin-top: -10px;
+    }
+  }
+}

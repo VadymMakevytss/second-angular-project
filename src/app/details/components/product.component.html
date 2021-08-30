@@ -1,0 +1,94 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <div class="image-container">
+        <img [src]="product.imgUrl" alt="img" />
+      </div>
+      <div class="resize-button-container">
+        <button class="btn-resize">+ZOOM</button>
+      </div>
+      <div class="color-info">
+        <div *ngFor="let color of product.color; let i = index">
+          <p>
+            <span
+              [ngClass]="{
+                unvisible: i == 0
+              }"
+              class="color-separator"
+              >/</span
+            >{{ color }}
+          </p>
+        </div>
+      </div>
+      <div class="colore-select">
+        <div *ngFor="let color of product.color; index as i">
+          <div class="img-container" [ngClass]="{ selected: i == 0 }">
+            <img
+              style="border: 1px solid {{ color }};"
+              [src]="product.imgUrl"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <h1>{{ product.name }}</h1>
+      <p>{{ product.description | shorten: 200 }}<a>(Read More)</a></p>
+      <h4>{{ product.price | currency: "USD" }}</h4>
+      <div class="reiting-section">
+        <div>
+          <fa-icon
+            *ngFor="let item of starQuantity"
+            class="star-background"
+            [icon]="faStar"
+          ></fa-icon>
+          <a href="#">({{ product.review.length }})</a>
+        </div>
+        <div class="review-section">
+          <a href="#">Read {{ product.review.length }} review</a>
+          <a href="#">Write a review</a>
+        </div>
+        <div class="selector">
+          <label for="color">Color</label>
+          <select name="color" id="color">
+            <option value="main">Select Color</option>
+            <option *ngFor="let color of product.color; index as i" value="">{{
+              color
+            }}</option>
+          </select>
+        </div>
+        <div class="selector">
+          <label for="size">Size</label>
+          <select name="size" id="size">
+            <option value="main">Select Size</option>
+            <option *ngFor="let size of product.size; index as i" value="i">{{
+              size
+            }}</option>
+          </select>
+        </div>
+        <div class="selector">
+          <label for="availability">Avalability</label>
+          <select name="availability" id="availability">
+            <option value="main">Please select options</option>
+          </select>
+        </div>
+        <div class="selector">
+          <label for="quantity">Quantity</label>
+          <input type="text" id="quantity" name="quantity" placeholder="1" />
+        </div>
+        <div class="btn-block cart-add">
+          <button>
+            <fa-icon class="cart-plus" [icon]="faCartPlus"></fa-icon>Add to cart
+          </button>
+        </div>
+        <div class="btn-block wish-add">
+          <button>
+            <fa-icon class="pencil-alt" [icon]="faPencilAlt"></fa-icon>Add to
+            wish list
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
