@@ -4,7 +4,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Start applicaation:
 
-Run `ng run start.
+Run `npm run start.
+
+## Branch:
+
+gh-pages
 
 ## Demo:
 
