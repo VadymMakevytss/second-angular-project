@@ -8,4 +8,4 @@ Run `npm run start.
 
 ## Demo
 
-https://vadymmakevytss.github.io/second-angular-project/second-angular-project/card
+https://vadymmakevytss.github.io/second-angular-project/second-angular-project
